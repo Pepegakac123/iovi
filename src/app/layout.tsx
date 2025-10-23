@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 			"Jowita - Tatuaże graficzne i minimalistyczne | Lewus Ink Mszana Dolna",
 		description:
 			"Tatuaże graficzne i minimalistyczne w Mszanie Dolnej. Autorskie projekty, precyzja wykonania, - Bezpłatna konsultacja",
-		url: "https://iovi-ink.pl",
-		siteName: "iovi-ink",
+		url: "https://iovi.pl",
+		siteName: "iovi",
 		locale: "pl_PL",
 		type: "website",
 		images: [
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
 	},
 
 	// Canonical URL
-	metadataBase: new URL("https://iovi-ink.pl"),
+	metadataBase: new URL("https://iovi.pl"),
 	alternates: {
-		canonical: "https://iovi-ink.pl",
+		canonical: "https://iovi.pl",
 	},
 
 	// Additional meta tags
@@ -69,7 +69,7 @@ const alfa = localFont({
 });
 
 const heroImageSrc = images.bab_z_maszynkom.src;
-const preloadUrl = `https://iovi-ink.pl/cdn-cgi/image/width=640,quality=80,format=auto/${heroImageSrc}`;
+// const preloadUrl = `https://iovi-ink.pl/cdn-cgi/image/width=640,quality=80,format=auto/${heroImageSrc}`;
 export default function RootLayout({
 	children,
 }: {
@@ -79,7 +79,12 @@ export default function RootLayout({
 		<html lang="pl" className={`${inter.variable} ${alfa.variable}`}>
 			<head>
 				{/* ✅ CRITICAL: Preload hero image dla LCP optimization */}
-				<link rel="preload" as="image" href={preloadUrl} fetchPriority="high" />
+				<link
+					rel="preload"
+					as="image"
+					href={heroImageSrc}
+					fetchPriority="high"
+				/>
 
 				{/* ✅ CRITICAL: DNS prefetch dla external resources */}
 				<link rel="dns-prefetch" href="//cms.iovi-ink.pl" />
@@ -151,7 +156,7 @@ export default function RootLayout({
 						}}
 					/>
 				</RecaptchaProvider>
-				<ConditionalAnalytics />
+				{/* <ConditionalAnalytics /> */}
 				<InstagramGlimpse variant="fixed" />
 			</body>
 		</html>

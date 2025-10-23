@@ -1,4 +1,13 @@
 import Hero from "@/components/Sections/Hero";
+// Bez dynamic, importujemy bezpośrednio
+import AboutMe from "@/components/Sections/AboutMe";
+import Services from "@/components/Sections/Services";
+import TargetAudience from "@/components/Sections/TargetAudienceSection";
+import Process from "@/components/Sections/Process";
+import WhyMe from "@/components/Sections/WhyMe";
+import Faq from "@/components/Sections/Faq";
+import FeaturedBlogs from "@/components/FeaturedBlogs";
+import Contact from "@/components/Sections/Contact"; // Zostawiamy dynamic Contact
 
 import * as motion from "motion/react-client";
 import { images } from "@/lib/images";
@@ -14,13 +23,13 @@ import {
 	whyMeHome,
 } from "@/lib/data";
 import { BreadcrumbJsonLd, FAQPageJsonLd, SocialProfileJsonLd } from "next-seo";
-import FeaturedBlogs from "@/components/FeaturedBlogs";
 import CarouselSkeleton from "@/components/skeletons/CarouselSkeleton";
 import dynamic from "next/dynamic";
 
 // Załóżmy, że masz też prosty szkielet dla bloku
 const SectionSkeleton = () => <div className="h-96 w-full bg-muted/50" />;
 
+// ✅ 1. CAROUSEL SECTION - Zostawiamy jako dynamiczne ładowanie
 const DynamicCarousel = dynamic(
 	() => import("@/components/Sections/CarouselSections"),
 	{
@@ -31,38 +40,13 @@ const DynamicCarousel = dynamic(
 	},
 );
 
-const DynamicFaq = dynamic(() => import("@/components/Sections/Faq"), {
-	loading: () => <SectionSkeleton />,
-});
-
-const DynamicFeaturedBlogs = dynamic(
-	() => import("@/components/FeaturedBlogs"),
-	{
-		loading: () => <SectionSkeleton />,
-	},
-);
-
+// ✅ 2. CONTACT SECTION - Zostawiamy jako dynamiczne ładowanie (często formularze są ciężkie)
 const DynamicContact = dynamic(() => import("@/components/Sections/Contact"), {
 	loading: () => <SectionSkeleton />,
 });
 
-const DynamicAboutMe = dynamic(() => import("@/components/Sections/AboutMe"), {
-	loading: () => <SectionSkeleton />,
-});
-const DynamicServices = dynamic(
-	() => import("@/components/Sections/Services"),
-	{ loading: () => <SectionSkeleton /> },
-);
-const DynamicTargetAudience = dynamic(
-	() => import("@/components/Sections/TargetAudienceSection"),
-	{ loading: () => <SectionSkeleton /> },
-);
-const DynamicProcess = dynamic(() => import("@/components/Sections/Process"), {
-	loading: () => <SectionSkeleton />,
-});
-const DynamicWhyMe = dynamic(() => import("@/components/Sections/WhyMe"), {
-	loading: () => <SectionSkeleton />,
-});
+// 🔥 USUNIĘTO Dynamic dla Faq, FeaturedBlogs, AboutMe, Services, TargetAudience, Process, WhyMe.
+// Te komponenty będą teraz ładowane statycznie na serwerze (SSR).
 
 export default async function Home() {
 	return (
@@ -89,6 +73,7 @@ export default async function Home() {
 				mainEntity={faqHome.questions.map(({ question, answer }) => ({
 					questionName: question,
 					acceptedAnswerText: answer,
+					// Dodaj odpowiedni typ jeśli jest używany w FAQ
 				}))}
 			/>
 			<Hero
@@ -113,32 +98,42 @@ export default async function Home() {
 						realizacji każdego projektu.
 					</>
 				}
-				image={images.bab_z_maszynkom}
+				image={images.bab_stoi}
 			/>
+			{/* ✅ DYNAMIC CAROUSEL */}
 			<DynamicCarousel />
+
 			<section className="visibility-auto">
-				<DynamicAboutMe {...aboutMeHome} />
+				{/* 🔥 STATIC RENDER */}
+				<AboutMe {...aboutMeHome} />
 			</section>
 			<section className="bg-foreground mt-16 visibility-auto">
-				<DynamicServices {...servicesHome} />
+				{/* 🔥 STATIC RENDER */}
+				<Services {...servicesHome} />
 			</section>
 			<section className="bg-primary-foreground visibility-auto">
-				<DynamicTargetAudience {...targetAudienceHome} />
+				{/* 🔥 STATIC RENDER */}
+				<TargetAudience {...targetAudienceHome} />
 			</section>
 			<section className="visibility-auto">
-				<DynamicProcess {...procesHome} />
+				{/* 🔥 STATIC RENDER */}
+				<Process {...procesHome} />
 			</section>
 			<section className="bg-foreground mt-16 visibility-auto">
-				<DynamicWhyMe {...whyMeHome} />
+				{/* 🔥 STATIC RENDER */}
+				<WhyMe {...whyMeHome} />
 			</section>
 			<section className="bg-primary-foreground visibility-auto">
-				<DynamicFeaturedBlogs {...blogHome} />
+				{/* 🔥 STATIC RENDER */}
+				<FeaturedBlogs {...blogHome} />
 			</section>
 			<section className="visibility-auto">
-				<DynamicFaq {...faqHome} />
+				{/* 🔥 STATIC RENDER */}
+				<Faq {...faqHome} />
 			</section>
 
 			<section className="visibility-auto">
+				{/* ✅ DYNAMIC CONTACT */}
 				<DynamicContact {...contactHome} />
 			</section>
 		</>

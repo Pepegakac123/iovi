@@ -467,7 +467,8 @@ export async function mapImagesWithWordPressAlt(
 	const promises = imageUrls.map(async (url) => {
 		const result = await getImageWithAltText(url);
 		return {
-			src: getCDNUrl(result.src), // ✅ Automatyczna konwersja!
+			// src: getCDNUrl(result.src), // ✅ Automatyczna konwersja!
+			src: result.src,
 			alt: result.alt,
 		};
 	});

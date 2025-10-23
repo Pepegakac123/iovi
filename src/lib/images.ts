@@ -232,4 +232,4 @@ const convertedImages: Images = {
 	},
 };
 
-export const images = convertedImages;
+export const images = wpImages;
