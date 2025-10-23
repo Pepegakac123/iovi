@@ -1,24 +1,27 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../styles/typography.css";
+@import "../styles/blog.css";
+
+/*
+  WAŻNE:
+  - Plik @font-face został usunięty — fonty będą wczytywane i optymalizowane przy użyciu next/font (local)
+  - next/font powinien ustawić zmienne CSS: --font-inter i --font-alfa (przykład).
+  - Tutaj używamy tych zmiennych jako fallbacky, oraz stosujemy właściwości specyficzne dla variable fonts.
+*/
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-	font-family: Inter;
-	font-style: normal;
-	font-display: swap;
-	src: url("/public/fonts/Inter-VariableFont.ttf") format("truetype");
-}
-
 :root {
+	/* Kolory i design system (niezmienione) */
 	--background: oklch(0.9856 0.0084 56.3169);
 	--foreground: oklch(0.3353 0.0132 2.7676);
-	--card: oklch(1.0 0 0);
+	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.3353 0.0132 2.7676);
-	--popover: oklch(1.0 0 0);
+	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.3353 0.0132 2.7676);
 	--primary: oklch(0.7357 0.1641 34.7091);
-	--primary-foreground: oklch(1.0 0 0);
+	--primary-foreground: oklch(1 0 0);
 	--secondary: oklch(0.9596 0.02 28.9029);
 	--secondary-foreground: oklch(0.5587 0.1294 32.7364);
 	--muted: oklch(0.9656 0.0176 39.4009);
@@ -26,7 +29,7 @@
 	--accent: oklch(0.8278 0.1131 57.9984);
 	--accent-foreground: oklch(0.3353 0.0132 2.7676);
 	--destructive: oklch(0.6122 0.2082 22.241);
-	--destructive-foreground: oklch(1.0 0 0);
+	--destructive-foreground: oklch(1 0 0);
 	--border: oklch(0.9296 0.037 38.6868);
 	--input: oklch(0.9296 0.037 38.6868);
 	--ring: oklch(0.7357 0.1641 34.7091);
@@ -38,27 +41,32 @@
 	--sidebar: oklch(0.9656 0.0176 39.4009);
 	--sidebar-foreground: oklch(0.3353 0.0132 2.7676);
 	--sidebar-primary: oklch(0.7357 0.1641 34.7091);
-	--sidebar-primary-foreground: oklch(1.0 0 0);
+	--sidebar-primary-foreground: oklch(1 0 0);
 	--sidebar-accent: oklch(0.8278 0.1131 57.9984);
 	--sidebar-accent-foreground: oklch(0.3353 0.0132 2.7676);
 	--sidebar-border: oklch(0.9296 0.037 38.6868);
 	--sidebar-ring: oklch(0.7357 0.1641 34.7091);
-	--font-sans: Inter, sans-serif;
-	--font-serif: Roboto, sans-serif;
-	--font-mono: Ubuntu Mono, monospace;
+
+	/* FONTY: Next/font będzie ustawiać --font-inter i --font-alfa. Tutaj ustawiamy bezpieczne fallbacky. */
+	--font-text:
+		var(--font-inter, Inter), system-ui, -apple-system, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, sans-serif;
+	--font-primary:
+		var(--font-alfa, "AlfaSlabOne"), "Segoe UI", Roboto, Arial, sans-serif;
+
 	--radius: 0.8rem;
 	--shadow-2xs: 0px 6px 12px -3px hsl(0 0% 0% / 0.04);
 	--shadow-xs: 0px 6px 12px -3px hsl(0 0% 0% / 0.04);
-	--shadow-sm: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow-md: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 2px 4px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow-lg: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 4px 6px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow-xl: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 8px 10px -4px
-		hsl(0 0% 0% / 0.09);
+	--shadow-sm:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px hsl(0 0% 0% / 0.09);
+	--shadow:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px hsl(0 0% 0% / 0.09);
+	--shadow-md:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 2px 4px -4px hsl(0 0% 0% / 0.09);
+	--shadow-lg:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 4px 6px -4px hsl(0 0% 0% / 0.09);
+	--shadow-xl:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 8px 10px -4px hsl(0 0% 0% / 0.09);
 	--shadow-2xl: 0px 6px 12px -3px hsl(0 0% 0% / 0.22);
 	--tracking-normal: 0em;
 	--spacing: 0.25rem;
@@ -72,7 +80,7 @@
 	--popover: oklch(0.3184 0.0176 341.4465);
 	--popover-foreground: oklch(0.9397 0.0119 51.3156);
 	--primary: oklch(0.7357 0.1641 34.7091);
-	--primary-foreground: oklch(1.0 0 0);
+	--primary-foreground: oklch(1 0 0);
 	--secondary: oklch(0.3637 0.0203 342.2664);
 	--secondary-foreground: oklch(0.9397 0.0119 51.3156);
 	--muted: oklch(0.3184 0.0176 341.4465);
@@ -80,7 +88,7 @@
 	--accent: oklch(0.8278 0.1131 57.9984);
 	--accent-foreground: oklch(0.2569 0.0169 352.4042);
 	--destructive: oklch(0.6122 0.2082 22.241);
-	--destructive-foreground: oklch(1.0 0 0);
+	--destructive-foreground: oklch(1 0 0);
 	--border: oklch(0.3637 0.0203 342.2664);
 	--input: oklch(0.3637 0.0203 342.2664);
 	--ring: oklch(0.7357 0.1641 34.7091);
@@ -92,27 +100,29 @@
 	--sidebar: oklch(0.2569 0.0169 352.4042);
 	--sidebar-foreground: oklch(0.9397 0.0119 51.3156);
 	--sidebar-primary: oklch(0.7357 0.1641 34.7091);
-	--sidebar-primary-foreground: oklch(1.0 0 0);
+	--sidebar-primary-foreground: oklch(1 0 0);
 	--sidebar-accent: oklch(0.8278 0.1131 57.9984);
 	--sidebar-accent-foreground: oklch(0.2569 0.0169 352.4042);
 	--sidebar-border: oklch(0.3637 0.0203 342.2664);
 	--sidebar-ring: oklch(0.7357 0.1641 34.7091);
-	--font-sans: Inter, sans-serif;
-	--font-serif: Roboto, sans-serif;
-	--font-mono: Ubuntu Mono, monospace;
+	--font-text:
+		var(--font-inter, Inter), system-ui, -apple-system, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, sans-serif;
+	--font-primary:
+		var(--font-alfa, "AlfaSlabOne"), "Segoe UI", Roboto, Arial, sans-serif;
 	--radius: 0.8rem;
 	--shadow-2xs: 0px 6px 12px -3px hsl(0 0% 0% / 0.04);
 	--shadow-xs: 0px 6px 12px -3px hsl(0 0% 0% / 0.04);
-	--shadow-sm: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow-md: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 2px 4px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow-lg: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 4px 6px -4px
-		hsl(0 0% 0% / 0.09);
-	--shadow-xl: 0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 8px 10px -4px
-		hsl(0 0% 0% / 0.09);
+	--shadow-sm:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px hsl(0 0% 0% / 0.09);
+	--shadow:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 1px 2px -4px hsl(0 0% 0% / 0.09);
+	--shadow-md:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 2px 4px -4px hsl(0 0% 0% / 0.09);
+	--shadow-lg:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 4px 6px -4px hsl(0 0% 0% / 0.09);
+	--shadow-xl:
+		0px 6px 12px -3px hsl(0 0% 0% / 0.09), 0px 8px 10px -4px hsl(0 0% 0% / 0.09);
 	--shadow-2xl: 0px 6px 12px -3px hsl(0 0% 0% / 0.22);
 }
 
@@ -150,9 +160,8 @@
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
 
-	--font-sans: var(--font-sans);
-	--font-mono: var(--font-mono);
-	--font-serif: var(--font-serif);
+	--font-text: var(--font-text);
+	--font-primary: var(--font-primary);
 
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
@@ -176,4 +185,172 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+	.container {
+		@apply mx-auto !max-w-[1440px] w-full;
+	}
+	section:not([aria-label*="Notifications"]):not([aria-live]) {
+		@apply py-20 md:py-24 px-4 md:px-8 lg:px-12 xl:px-16;
+	}
+	.placeholder-transition::placeholder {
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	.placeholder-transition:focus::placeholder {
+		opacity: 0;
+	}
+	.grecaptcha-badge {
+		visibility: hidden;
+	}
+
+	/* Klasy fontów: używaj zmiennych ustawionych przez next/font (lokalnie) */
+	.font-primary {
+		font-family: var(--font-primary);
+		/* Display fonty często nie potrzebują optical sizing; ale możesz dodać dodatkowe reguły tu. */
+	}
+	.font-text {
+		font-family: var(--font-text);
+		/* dla variable fonts - przydatne ustawienia */
+		font-optical-sizing: auto;
+		font-variation-settings: "wght" 400; /* neutralne domyślne ustawienie wagi */
+	}
+	.visibility-auto {
+		content-visibility: auto;
+	}
+}
+
+/* Phone Input styling specjalne dla brutal design */
+.phone-input-wrapper [data-slot="input"] {
+	@apply bg-secondary/70 border-foreground hover:bg-secondary focus:bg-background;
+}
+
+.phone-input-wrapper button {
+	@apply bg-secondary/70 border-foreground hover:bg-secondary;
+}
+
+/* File Upload brutal styling */
+.file-uploader-brutal {
+	@apply bg-secondary border-2 border-foreground rounded-md transition-all;
+}
+
+.file-uploader-brutal:hover {
+	@apply shadow-[2px_2px_0px_0px_theme(colors.foreground)] translate-x-[-1px] translate-y-[-1px];
+}
+
+/* File Input drop zone */
+.file-input-brutal {
+	@apply border-2 border-dashed border-foreground/50 bg-background/50 rounded-md transition-all;
+}
+
+.file-input-brutal:hover {
+	@apply border-primary/70 bg-background/70;
+}
+
+/* File Items */
+.file-item-brutal {
+	@apply bg-background border-2 border-foreground rounded-sm transition-all;
+}
+
+.file-item-brutal:hover {
+	@apply bg-accent/20 shadow-[1px_1px_0px_0px_theme(colors.foreground)] translate-x-[-0.5px] translate-y-[-0.5px];
+}
+
+/* Phone Input styling for brutal design */
+.phone-input-brutal [data-slot="input"] {
+	@apply bg-secondary border-foreground;
+}
+
+.phone-input-brutal button {
+	@apply bg-secondary border-foreground;
+}
+
+/* Form container brutal styling */
+.form-container-brutal {
+	@apply bg-background border-2 border-b-4 border-r-4 border-foreground rounded-md shadow-[4px_4px_0px_0px_theme(colors.foreground)] transition-all duration-200;
+}
+
+.form-container-brutal:hover {
+	@apply shadow-[6px_6px_0px_0px_theme(colors.foreground)];
+}
+
+/* Submit button brutal styling */
+.submit-button-brutal {
+	@apply bg-primary text-background font-primary uppercase border-2 border-foreground rounded-md transition-all;
+}
+
+.submit-button-brutal:hover:not(:disabled) {
+	@apply bg-accent shadow-[4px_4px_0px_0px_theme(colors.foreground)] translate-x-[-2px] translate-y-[-2px];
+}
+
+.submit-button-brutal:disabled {
+	@apply opacity-50 cursor-not-allowed;
+}
+
+.submit-button-brutal:disabled:hover {
+	@apply shadow-none translate-x-0 translate-y-0;
+}
+
+/* Input fields with secondary background */
+.input-field-brutal {
+	@apply bg-secondary border-2 border-foreground font-text;
+}
+
+/* Textarea brutal styling */
+.textarea-brutal {
+	@apply bg-secondary border-2 border-foreground font-text resize-none;
+}
+
+/* Form labels brutal styling */
+.form-label-brutal {
+	@apply text-foreground font-primary font-bold;
+}
+
+[data-slot="dialog-content"] {
+	z-index: 9999 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--reduced-motion: 1;
+	}
+
+	/* Wyłączamy wszystkie animacje/przejścia CSS i przewijanie gładkie */
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0s !important;
+		animation-iteration-count: 1 !important;
+		animation-delay: 0s !important;
+		transition-duration: 0s !important;
+		transition-delay: 0s !important;
+		scroll-behavior: auto !important;
+		will-change: auto !important;
+	}
+}
+.no-motion *,
+.no-motion *::before,
+.no-motion *::after {
+	/* Wyłączamy CSS-owe animacje i przejścia */
+	animation-duration: 0s !important;
+	animation-iteration-count: 1 !important;
+	animation-delay: 0s !important;
+	transition-duration: 0s !important;
+	transition-delay: 0s !important;
+	/* Nie nadpisujemy transform globalnie - daje to mniejsze ryzyko łamania układu.
+Jeśli chcesz wymusić brak transform, odkomentuj poniższą linię. */
+	/* transform: none !important; */
+	scroll-behavior: auto !important;
+	will-change: auto !important;
+}
+
+/* Pozostawiamy swiper/carousel z animacjami - wyjątki */
+.no-motion .swiper,
+.no-motion .swiper *,
+.no-motion .carousel-swiper,
+.no-motion .carousel-swiper * {
+	animation-duration: initial !important;
+	animation-iteration-count: initial !important;
+	animation-delay: initial !important;
+	transition-duration: initial !important;
+	transition-delay: initial !important;
+	/* Jeśli wcześniej odkomentowałeś transform:none, upewnij się że swiper ma przywrócone transformy: */
+	transform: initial !important;
 }

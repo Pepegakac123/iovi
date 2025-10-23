@@ -1,0 +1,107 @@
+/* ===========================================
+   GLOBALNE KLASY TYPOGRAFII
+   =========================================== */
+
+/* ======= NAGŁÓWKI H2 ======= */
+
+/* Domyślny h2 - najczęściej używany */
+.heading-primary {
+	@apply text-2xl md:text-4xl font-primary text-foreground;
+}
+
+/* H2 dla sekcji z ciemnym tłem */
+.heading-primary-inverted {
+	@apply text-2xl md:text-4xl font-primary text-background;
+}
+
+/* H2 z wyśrodkowaniem */
+.heading-primary-center {
+	@apply text-2xl md:text-4xl font-primary text-foreground text-center;
+}
+
+/* H2 odwrócony z wyśrodkowaniem */
+.heading-primary-inverted-center {
+	@apply text-2xl md:text-4xl font-primary text-background text-center;
+}
+
+/* Mały h2 (używany w Subheadline) */
+.heading-small {
+	@apply text-base md:text-xl font-primary text-foreground;
+}
+
+/* ======= NAGŁÓWKI H3 ======= */
+
+/* Domyślny h3 */
+.heading-secondary {
+	@apply text-lg md:text-2xl font-primary text-foreground;
+}
+
+/* H3 większy (ProcessCard) */
+.heading-secondary-large {
+	@apply text-xl md:text-2xl font-primary text-foreground;
+}
+
+/* ======= PARAGRAFY ======= */
+
+/* Domyślny paragraf */
+.paragraph-base {
+	@apply text-base text-foreground font-text;
+}
+
+/* Paragraf dla sekcji z ciemnym tłem */
+.paragraph-base-inverted {
+	@apply text-base text-background font-text;
+}
+
+/* Paragraf z font-text */
+.paragraph-secondary {
+	@apply text-base font-text text-foreground font-text;
+}
+
+/* Paragraf mały */
+.paragraph-small {
+	@apply text-sm text-foreground font-text;
+}
+
+/* Paragraf mały wyciszony */
+.paragraph-small-muted {
+	@apply text-sm text-muted-foreground font-text;
+}
+
+/* Paragraf z opacity */
+.paragraph-muted {
+	@apply text-base text-foreground/80 font-text;
+}
+
+/* Paragraf Hero (większy) */
+.paragraph-hero {
+	@apply text-base lg:text-lg font-text text-foreground ;
+}
+
+.paragraph-hero-inverted {
+	@apply text-base lg:text-lg font-text text-background ;
+}
+/* Paragraf ProcessCard */
+.paragraph-process {
+	@apply text-sm md:text-base text-foreground/80 leading-relaxed font-text;
+}
+
+/* ======= PARAGRAFY Z OGRANICZENIAMI SZEROKOŚCI ======= */
+
+/* Paragraf z max-width */
+.paragraph-constrained {
+	@apply text-base text-foreground max-w-[600px] font-text;
+}
+
+/* Paragraf wyśrodkowany z max-width */
+.paragraph-center-constrained {
+	@apply text-base text-foreground text-center max-w-[800px] font-text;
+}
+
+/* Paragraf mniejszy wyśrodkowany z max-width */
+.paragraph-center-small-constrained {
+	@apply text-base text-background max-w-[525px] text-center font-text;
+}
+p{
+	@apply font-text
+}
